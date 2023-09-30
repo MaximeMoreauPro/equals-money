@@ -1,0 +1,3 @@
+{
+  "*.ts": ["npm run code:format-write", "npm run code:lint-write", "git add"]
+}
