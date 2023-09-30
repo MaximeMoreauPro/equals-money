@@ -19,10 +19,12 @@ export function createFixture() {
     async whenUserViewsTheListOfContacts() {
       displayedListOfContacts = await viewListOfContactsUseCase.handle();
     },
+    // Stryker disable all
     thenTheDisplayedListOfContactsIs(
       expectedListOfContacts: MinimalDetailsContact[],
     ) {
       expect(displayedListOfContacts).toStrictEqual(expectedListOfContacts);
     },
+    // Stryker restore all
   };
 }

@@ -10,14 +10,17 @@
   },
   "scripts": {
     "prepare": "husky install",
-    "code:format": "prettier src",
-    "code:format-write": "npm run code:format --write",
-    "code:lint": "eslint src --max-warnings 0",
-    "code:lint-write": "npm run code:lint --fix",
-    "code:typing": "tsc --noEmit",
-    "test:unit": "jest"
+    "static:format": "prettier src",
+    "static:format-write": "npm run static:format --write",
+    "static:lint": "eslint src --max-warnings 0",
+    "static:lint-write": "npm run static:lint --fix",
+    "static:type-checking": "tsc --noEmit",
+    "test:unit": "jest --verbose",
+    "test:mutation": "stryker run"
   },
   "devDependencies": {
+    "@stryker-mutator/core": "^7.1.1",
+    "@stryker-mutator/jest-runner": "^7.1.1",
     "@types/jest": "^29.5.5",
     "@typescript-eslint/eslint-plugin": "^6.7.3",
     "@typescript-eslint/parser": "^6.7.3",
