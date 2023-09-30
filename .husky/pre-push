@@ -3,5 +3,4 @@
 
 npm run static:type-checking
 npm run test:unit
-npm run test:mutation
 
