@@ -1,25 +1,28 @@
-import { Contact } from '@/entities/Contact';
+import { Contact } from '@/model/entities/Contact';
 
 import { MinimalDetailsContact } from './MinimalDetailsContact';
+import { ViewListOfContactsUseCase } from './ViewListOfContacts.usecase';
+import { InMemoryContactRepository } from '@/infra/repositories/InMemoryContact.repository';
 
 export function createFixture() {
-  let availableContacts: Contact[] = [];
-  let displayedListOfContacts: MinimalDetailsContact[] = [];
+  let displayedListOfContacts: MinimalDetailsContact[];
+
+  const contactsRepository = new InMemoryContactRepository();
+  const viewListOfContactsUseCase = new ViewListOfContactsUseCase(
+    contactsRepository,
+  );
 
   return {
     givenTheseContactsExist(contacts: Contact[]) {
-      availableContacts = contacts;
+      contactsRepository.initAvailableContacts(contacts);
     },
-    whenUserViewsTheListOfContacts() {
-      displayedListOfContacts = availableContacts.map(contact => ({
-        name: contact.name,
-        avatar: contact.avatar,
-      }));
+    async whenUserViewsTheListOfContacts() {
+      displayedListOfContacts = await viewListOfContactsUseCase.handle();
     },
     thenTheDisplayedListOfContactsIs(
       expectedListOfContacts: MinimalDetailsContact[],
     ) {
-      expect(displayedListOfContacts).toEqual(expectedListOfContacts);
+      expect(displayedListOfContacts).toStrictEqual(expectedListOfContacts);
     },
   };
 }

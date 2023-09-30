@@ -7,13 +7,13 @@ describe('Feature: view list of contacts', () => {
     fixture = createFixture();
   });
 
-  it('Scenario: user views the list of existing contacts', () => {
+  it('Scenario: user views the list of existing contacts', async () => {
     fixture.givenTheseContactsExist([
       {
         name: 'John Doe',
         avatar: 'https://example.com/john-doe.png',
         createdAt: '2020-01-01T00:00:00.000Z',
-        email: 'johndoe@gmail.com',
+        email: 'johndoe@test.com',
         phone: '+1 234 567 890',
         birthday: '1990-01-01',
       },
@@ -21,12 +21,12 @@ describe('Feature: view list of contacts', () => {
         name: 'Jane Doe',
         avatar: 'https://example.com/jane-doe.png',
         createdAt: '2020-01-01T00:00:00.000Z',
-        email: 'janedoe@gmail.com',
+        email: 'janedoe@test.com',
         phone: '+1 234 567 891',
         birthday: '1992-03-04',
       },
     ]);
-    fixture.whenUserViewsTheListOfContacts();
+    await fixture.whenUserViewsTheListOfContacts();
     fixture.thenTheDisplayedListOfContactsIs([
       {
         name: 'John Doe',
