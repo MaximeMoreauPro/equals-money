@@ -1,4 +1,4 @@
-import { MinimalDetailsContact } from '@/usecases/ViewListOfContacts/MinimalDetailsContact';
+import { MinimalDetailsContact } from '@/features/ViewListOfContacts/MinimalDetailsContact';
 
 export interface ContactRepository {
   findAllMinimalDetailsContacts(): Promise<MinimalDetailsContact[]>;
