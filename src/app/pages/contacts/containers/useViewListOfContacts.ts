@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 
 import { MinimalDetailsContact } from '@/features/ViewListOfContacts/MinimalDetailsContact';
+import { useViewListOfContactsUseCase } from '@/app/hooks/features/useViewListOfContactsUseCase';
 
 type UseViewListOfContactsReturn = {
   isContactsLoading: boolean;
@@ -12,13 +13,16 @@ export function useViewListOfContacts(): UseViewListOfContactsReturn {
 
   const [contacts, setContacts] = useState<MinimalDetailsContact[]>([]);
 
+  const { viewListOfContactsUseCase } = useViewListOfContactsUseCase();
+
   useEffect(() => {
-    setIsContactsLoading(true);
-    setContacts([
-      { name: 'John Doe', avatar: '' },
-      { name: 'Jane Doe', avatar: '' },
-    ]);
-    setIsContactsLoading(false);
+    async function fetchContacts() {
+      setIsContactsLoading(true);
+      const contacts = await viewListOfContactsUseCase.handle();
+      setContacts(contacts);
+      setIsContactsLoading(false);
+    }
+    fetchContacts();
   }, []);
 
   return { contacts, isContactsLoading };

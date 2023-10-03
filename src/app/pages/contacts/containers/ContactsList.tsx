@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { useViewListOfContacts } from '../hooks/useViewListOfContacts';
+import { useViewListOfContacts } from './useViewListOfContacts';
 
 export default function ContactsList() {
   const { isContactsLoading, contacts } = useViewListOfContacts();
@@ -13,7 +13,9 @@ export default function ContactsList() {
     return (
       <ul>
         {contacts.map(contact => (
-          <li data-testid="contact-card">{contact.name}</li>
+          <li data-testid="contact-card" key={contact.name}>
+            {contact.name}
+          </li>
         ))}
       </ul>
     );
