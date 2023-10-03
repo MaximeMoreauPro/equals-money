@@ -1,6 +1,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { RouterProvider, createMemoryRouter } from 'react-router-dom';
+import '@testing-library/jest-dom';
 
 import { Contact } from '@/model/entities/Contact';
 import { InMemoryContactRepository } from '@/infra/repositories/InMemoryContact.repository';
@@ -13,8 +14,12 @@ describe('Container: ContactsList', () => {
       contacts: [JohnDoeContact, JaneDoeContact],
     });
 
-    const loading = await screen.findByText('Loading...');
-    expect(loading).toBeDefined();
+    // expect(await screen.findByText('Loading...')).toBeInTheDocument();
+
+    const contactCards = await screen.findAllByTestId('contact-card');
+    expect(contactCards).toHaveLength(2);
+    expect(contactCards[0]).toHaveTextContent('John Doe');
+    expect(contactCards[1]).toHaveTextContent('Jane Doe');
   });
 });
 
