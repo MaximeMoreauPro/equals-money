@@ -1,5 +1,6 @@
 import { Contact } from '@/model/entities/Contact';
 import { ContactRepository } from '@/model/repositories/Contact.repository';
+import { JaneDoeContact, JohnDoeContact } from '@/__test__/Contact.mock-data';
 
 import { InMemoryContactRepository } from './InMemoryContact.repository';
 
@@ -44,35 +45,18 @@ function runContactRepositoryIntegrationTests(
     it('should find all minimal details contacts', async () => {
       contactRepositoryInit({
         contactRepository,
-        initialContacts: [
-          {
-            name: 'John Doe',
-            avatar: 'https://example.com/john-doe.png',
-            createdAt: '2020-01-01T00:00:00.000Z',
-            email: 'johndoe@test.com',
-            phone: '+1 234 567 890',
-            birthday: '1990-01-01',
-          },
-          {
-            name: 'Jane Doe',
-            avatar: 'https://example.com/jane-doe.png',
-            createdAt: '2020-01-01T00:00:00.000Z',
-            email: 'janedoe@test.com',
-            phone: '+1 234 567 891',
-            birthday: '1992-03-04',
-          },
-        ],
+        initialContacts: [JohnDoeContact, JaneDoeContact],
       });
       const contacts = await contactRepository.findAllMinimalDetailsContacts();
 
       expect(contacts).toStrictEqual([
         {
-          name: 'John Doe',
-          avatar: 'https://example.com/john-doe.png',
+          name: JohnDoeContact.name,
+          avatar: JohnDoeContact.avatar,
         },
         {
-          name: 'Jane Doe',
-          avatar: 'https://example.com/jane-doe.png',
+          name: JaneDoeContact.name,
+          avatar: JaneDoeContact.avatar,
         },
       ]);
     });
