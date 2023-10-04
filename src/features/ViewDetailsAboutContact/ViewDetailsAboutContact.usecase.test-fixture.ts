@@ -25,8 +25,8 @@ export function createFixture() {
         displayedDetailsAboutContact = result.contactDetails;
       }
 
-      if ('noContactMessage' in result) {
-        displayedNoContactMessage = result.noContactMessage;
+      if ('noContactFoundMessage' in result) {
+        displayedNoContactMessage = result.noContactFoundMessage;
       }
     },
     thenTheDisplayedDetailsAboutContactIs(

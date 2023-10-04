@@ -6,7 +6,7 @@ type ViewDetailsAboutContactUseCaseQuery = {
 };
 
 type ViewDetailsAboutContactUseCaseResult = Promise<
-  { contactDetails: Contact } | { noContactMessage: string }
+  { contactDetails: Contact } | { noContactFoundMessage: string }
 >;
 
 export class ViewDetailsAboutContactUseCase {
@@ -21,6 +21,8 @@ export class ViewDetailsAboutContactUseCase {
     if (contactDetails) {
       return { contactDetails };
     }
-    return { noContactMessage: `No contact found with name ${contactName}` };
+    return {
+      noContactFoundMessage: `No contact found with name ${contactName}`,
+    };
   }
 }
