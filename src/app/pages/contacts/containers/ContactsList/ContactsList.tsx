@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { useViewListOfContacts } from './useViewListOfContacts';
 
-export default function ContactsList() {
+export function ContactsList() {
   const { isContactsLoading, contacts } = useViewListOfContacts();
 
   const navigate = useNavigate();
@@ -15,13 +15,13 @@ export default function ContactsList() {
   if (contacts.length) {
     return (
       <ul>
-        {contacts.map(contact => (
+        {contacts.map(({ name }) => (
           <li
-            key={contact.name}
-            onClick={() => navigate(contact.name)}
+            key={name}
+            onClick={() => navigate(name)}
             data-testid="contact-card"
           >
-            {contact.name}
+            {name}
           </li>
         ))}
       </ul>
