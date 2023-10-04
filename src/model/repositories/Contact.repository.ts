@@ -1,4 +1,6 @@
-import { MinimalDetailsContact } from '@/features/ViewListOfContacts/MinimalDetailsContact';
+import { Contact } from '../entities/Contact';
+
+export type MinimalDetailsContact = Pick<Contact, 'name' | 'avatar'>;
 
 export interface ContactRepository {
   findAllMinimalDetailsContacts(): Promise<MinimalDetailsContact[]>;

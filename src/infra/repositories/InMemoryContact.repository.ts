@@ -1,6 +1,8 @@
 import { Contact } from '@/model/entities/Contact';
-import { ContactRepository } from '@/model/repositories/Contact.repository';
-import { MinimalDetailsContact } from '@/features/ViewListOfContacts/MinimalDetailsContact';
+import {
+  ContactRepository,
+  MinimalDetailsContact,
+} from '@/model/repositories/Contact.repository';
 
 /**
  * In-memory implementation of the ContactRepository interface for testing purposes.

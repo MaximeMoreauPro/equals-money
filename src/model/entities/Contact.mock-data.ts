@@ -1,4 +1,4 @@
-import { Contact } from '@/model/entities/Contact';
+import { Contact } from './Contact';
 
 export const JohnDoeContact: Contact = {
   name: 'John Doe',

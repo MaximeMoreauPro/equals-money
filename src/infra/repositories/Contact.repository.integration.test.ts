@@ -1,6 +1,9 @@
 import { Contact } from '@/model/entities/Contact';
 import { ContactRepository } from '@/model/repositories/Contact.repository';
-import { JaneDoeContact, JohnDoeContact } from '@/__test__/Contact.mock-data';
+import {
+  JaneDoeContact,
+  JohnDoeContact,
+} from '@/model/entities/Contact.mock-data';
 
 import { InMemoryContactRepository } from './InMemoryContact.repository';
 

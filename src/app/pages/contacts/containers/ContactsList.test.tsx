@@ -1,13 +1,24 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
 import { RouterProvider, createMemoryRouter } from 'react-router-dom';
+import { render, screen } from '@testing-library/react';
+import user from '@testing-library/user-event';
 import '@testing-library/jest-dom';
 
 import { Contact } from '@/model/entities/Contact';
 import { InMemoryContactRepository } from '@/infra/repositories/InMemoryContact.repository';
 import { contactsRoutes } from '@/app/pages/contacts/routes';
-import { JaneDoeContact, JohnDoeContact } from '@/__test__/Contact.mock-data';
+import {
+  JaneDoeContact,
+  JohnDoeContact,
+} from '@/model/entities/Contact.mock-data';
 import { ContactRepositoryContext } from '@/app/contexts/ContactRepositoryContext';
+
+const mockedUseNavigate = jest.fn();
+
+jest.mock('react-router-dom', () => ({
+  ...jest.requireActual('react-router-dom'),
+  useNavigate: () => mockedUseNavigate,
+}));
 
 describe('Container: ContactsList', () => {
   it('should display the contact cards list from the list of available contacts', async () => {
@@ -24,6 +35,18 @@ describe('Container: ContactsList', () => {
     for (let i = 0; i < availableContacts.length; i++) {
       expect(contactCards[i]).toHaveTextContent(availableContacts[i].name);
     }
+  });
+
+  it('should navigate to the contact detail page on card click', async () => {
+    const availableContacts = [JohnDoeContact];
+
+    renderContactsList({
+      availableContacts,
+    });
+
+    const contactCards = await screen.findAllByTestId('contact-card');
+    await user.click(contactCards[0]);
+    expect(mockedUseNavigate).toHaveBeenCalledWith(JohnDoeContact.name);
   });
 });
 

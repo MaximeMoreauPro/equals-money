@@ -1,6 +1,7 @@
-import { ContactRepository } from '@/model/repositories/Contact.repository';
-
-import { MinimalDetailsContact } from './MinimalDetailsContact';
+import {
+  ContactRepository,
+  MinimalDetailsContact,
+} from '@/model/repositories/Contact.repository';
 
 type ViewListOfContactsUseCaseReturn = Promise<MinimalDetailsContact[]>;
 

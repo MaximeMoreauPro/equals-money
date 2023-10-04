@@ -1,8 +1,9 @@
 import { Contact } from '@/model/entities/Contact';
 
-import { MinimalDetailsContact } from './MinimalDetailsContact';
-import { ViewListOfContactsUseCase } from './ViewListOfContacts.usecase';
 import { InMemoryContactRepository } from '@/infra/repositories/InMemoryContact.repository';
+import { MinimalDetailsContact } from '@/model/repositories/Contact.repository';
+
+import { ViewListOfContactsUseCase } from './ViewListOfContacts.usecase';
 
 export function createFixture() {
   let displayedListOfContacts: MinimalDetailsContact[];
