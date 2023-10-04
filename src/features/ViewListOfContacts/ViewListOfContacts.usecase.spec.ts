@@ -1,3 +1,8 @@
+import {
+  JaneDoeContact,
+  JohnDoeContact,
+} from '@/model/entities/Contact.mock-data';
+
 import { createFixture } from './ViewListOfContacts.usecase.test-fixture';
 
 describe('Feature: view list of contacts', () => {
@@ -8,33 +13,16 @@ describe('Feature: view list of contacts', () => {
   });
 
   it('Scenario: user views the list of existing contacts', async () => {
-    fixture.givenTheseContactsExist([
-      {
-        name: 'John Doe',
-        avatar: 'https://example.com/john-doe.png',
-        createdAt: '2020-01-01T00:00:00.000Z',
-        email: 'johndoe@test.com',
-        phone: '+1 234 567 890',
-        birthday: '1990-01-01',
-      },
-      {
-        name: 'Jane Doe',
-        avatar: 'https://example.com/jane-doe.png',
-        createdAt: '2020-01-01T00:00:00.000Z',
-        email: 'janedoe@test.com',
-        phone: '+1 234 567 891',
-        birthday: '1992-03-04',
-      },
-    ]);
+    fixture.givenTheseContactsExist([JohnDoeContact, JaneDoeContact]);
     await fixture.whenUserViewsTheListOfContacts();
     fixture.thenTheDisplayedListOfContactsIs([
       {
-        name: 'John Doe',
-        avatar: 'https://example.com/john-doe.png',
+        name: JohnDoeContact.name,
+        avatar: JohnDoeContact.avatar,
       },
       {
-        name: 'Jane Doe',
-        avatar: 'https://example.com/jane-doe.png',
+        name: JaneDoeContact.name,
+        avatar: JaneDoeContact.avatar,
       },
     ]);
   });

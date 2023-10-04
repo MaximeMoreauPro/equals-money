@@ -11,6 +11,12 @@ import {
 export class InMemoryContactRepository implements ContactRepository {
   private contacts: Contact[] = [];
 
+  async findDetailsAboutContact(
+    contactName: Contact['name'],
+  ): Promise<Contact | undefined> {
+    return this.contacts.find(({ name }) => name === contactName);
+  }
+
   async findAllMinimalDetailsContacts(): Promise<MinimalDetailsContact[]> {
     return this.contacts.map(({ name, avatar }) => ({
       name,

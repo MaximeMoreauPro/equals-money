@@ -3,12 +3,12 @@ import {
   MinimalDetailsContact,
 } from '@/model/repositories/Contact.repository';
 
-type ViewListOfContactsUseCaseReturn = Promise<MinimalDetailsContact[]>;
+type ViewListOfContactsUseCaseResult = Promise<MinimalDetailsContact[]>;
 
 export class ViewListOfContactsUseCase {
   constructor(private readonly contactRepository: ContactRepository) {}
 
-  async handle(): ViewListOfContactsUseCaseReturn {
+  async handle(): ViewListOfContactsUseCaseResult {
     return this.contactRepository.findAllMinimalDetailsContacts();
   }
 }
