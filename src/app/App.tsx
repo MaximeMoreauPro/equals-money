@@ -6,12 +6,12 @@ import { GlobalStyle } from './GlobalStyle';
 
 const App = () => {
   return (
-    <React.StrictMode>
+    <>
       <GlobalStyle />
       <Suspense>
         <RouterProvider router={router} />
       </Suspense>
-    </React.StrictMode>
+    </>
   );
 };
 
